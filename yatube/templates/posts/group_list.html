@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block head %}
+{% block title %}
 <title>Записи сообщества  {{ group.title }}</title>
 {% endblock %}
-{% block title %}
+{% block topic %}
 <h1>{{ group.title }}</h1>
 {% endblock %}
 {% block content %}
-        <p>
-            {{ group.description }}
-        </p>
+  <p>
+    {{ group.description|safe }}
+  </p>
 {% for post in posts %}
   <article>
   <ul>
@@ -20,7 +19,7 @@
       Дата публикации: {{ post.pub_date|date:"d E Y" }}
     </li>
   </ul>
-  <p>{{ post.text }}</p>
+  <p>{{ post.text|safe }}</p>
   </article>
   {% if not forloop.last %}<hr>{% endif %}
 {% endfor %}

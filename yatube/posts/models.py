@@ -23,8 +23,8 @@ class Post(models.Model):
     )
     group = models.ForeignKey(
         Group,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         blank=True,
         null=True,
-        related_name='groups'
+        related_name='posts'
     )
