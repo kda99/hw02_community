@@ -5,7 +5,6 @@ from .models import Post, Group
 
 def index(request):
     posts = Post.objects.order_by('-pub_date')[:10]
-    # В словаре context отправляем информацию в шаблон
     context = {
         'posts': posts,
     }
