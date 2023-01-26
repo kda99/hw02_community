@@ -9,7 +9,7 @@
   <p>
     {{ group.description|linebreaksbr }}
   </p>
-{% for post in posts %}
+{% for post in page_obj %}
   <article>
   <ul>
     <li>
@@ -23,4 +23,5 @@
   </article>
   {% if not forloop.last %}<hr>{% endif %}
 {% endfor %}
+{% include 'posts/includes/paginator.html' %}
 {% endblock %}
