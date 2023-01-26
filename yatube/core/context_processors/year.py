@@ -1,2 +1,2 @@
-def year():
+def year(request):
     pass
