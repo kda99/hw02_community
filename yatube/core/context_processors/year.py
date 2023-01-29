@@ -1,2 +1,8 @@
+from datetime import datetime
+
+
 def year(request):
-    pass
+    currentYear = datetime.now().year
+    return {
+        'year': currentYear,
+        }
