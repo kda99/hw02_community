@@ -76,10 +76,8 @@ def post_detail(request, post_id):
 
 
 def post_create(request):
-    groups = Group.objects.all()
-    form = PostForm(request.POST or None, files=request.FILES or None)
+    form = PostForm(request.POST or None)
     context = {
-        'groups': groups,
         'form': form,
     }
     if form.is_valid():
@@ -87,3 +85,17 @@ def post_create(request):
         form.save()
         return redirect('posts:profile', request.user.username)
     return render(request, 'posts/create_post.html', context)
+
+
+def post_edit(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    form = PostForm(request.POST or None)
+    current_user = request.user
+    is_edit = True if current_user == post.author else False
+    context = {
+        'is_edit': is_edit,
+        'form': form,
+    }
+    if not is_edit:
+        return redirect('posts:post_detail', post_id)
+    return render(request, 'posts/update_post.html', context)
